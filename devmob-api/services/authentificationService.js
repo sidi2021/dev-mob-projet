@@ -22,9 +22,10 @@ async function connecter(data) {
   
   if (utilisateurs1.length !== 0 ) {
       if(utilisateurs2.some(utilisateur => utilisateur.telephone === utilisateurs1[0].telephone)) {
-        return {utilisateur: utilisateurs1[0], raison: ''}
+        db.execute(`UPDATE TABLE utilisateur SET isOnLine=1`);
+        return {utilisateur: utilisateurs1[0], raison: ''};
       } else {
-        return {utilisateur: {}, raison: "Mot de passe incorrect"}
+        return {utilisateur: {}, raison: "Mot de passe incorrect"};
       }
   }
   return {utilisateur: {}, raison: "L'utilisateur n'existe pas"};
