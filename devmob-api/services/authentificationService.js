@@ -2,7 +2,7 @@ const db = require('./db');
 
 
 async function inscrire(data) {
-  const utilisateurs = await db.execute(`SELECT * FROM utilisateur WHERE telephone=${data.telephone}`);
+  const utilisateurs = await db.execute(`SELECT * FROM utilisateur WHERE telephone='${data.telephone}'`);
   if (utilisateurs.length === 0){
     db.execute(`INSERT INTO utilisateur VALUES(
       '${data.telephone}',
@@ -17,12 +17,11 @@ async function inscrire(data) {
 }
 
 async function connecter(data) {
-  const utilisateurs1 = await db.execute(`SELECT * FROM utilisateur WHERE telephone=${data.telephone}`);
-  const utilisateurs2 = await db.execute(`SELECT * FROM utilisateur WHERE motdepasse=${data.motdepasse}`);
+  const utilisateurs1 = await db.execute(`SELECT * FROM utilisateur WHERE telephone='${data.telephone}'`);
   
   if (utilisateurs1.length !== 0 ) {
-      if(utilisateurs2.some(utilisateur => utilisateur.telephone === utilisateurs1[0].telephone)) {
-        db.execute(`UPDATE TABLE utilisateur SET isOnLine=1`);
+      if(data.motdepasse === utilisateurs1[0].motdepasse) {
+        db.execute(`UPDATE utilisateur SET isOnLine=1`);
         return {utilisateur: utilisateurs1[0], raison: ''};
       } else {
         return {utilisateur: {}, raison: "Mot de passe incorrect"};
@@ -32,7 +31,7 @@ async function connecter(data) {
 }
 
 async function deconnecter(telephone) {
-  db.execute(`UPDATE utilisateur SET isOnLine= 0 WHERE telephone=${telephone}`);
+  db.execute(`UPDATE utilisateur SET isOnLine= 0 WHERE telephone='${telephone}'`);
 }
 
 module.exports = {
