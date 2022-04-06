@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Se connecter</title>
+</head>
+<body>
+    <div class="app-bar">
+        <h3 class="text-justify text-primary">devmob</h3>
+        <input type="hidden" id="hidden">
+        <div id="link-div">  
+            <a href="#" class="" onClick="sedeconnecter('telephone')" id="link-deconnecter">deconnecté</a>
+            <a href="#" class="" onClick="navigate('contact-page', 'profile-page')" id="link-contact">Profile</a>
+            <a href="#" class="" onClick="navigate('profile-page', 'contact-page')" id="link-profile">Contacts</a>
+        </div>
+    </div>
+    <div class="root" id="connection-page">
+        <div class="auth-container" class="form-group">
+        <h4 class="text-primary mb-5">Se connecter</h4>
+            <input type="tel" id="telephone1" class="form-control mb-3" placeholder="Telephone">
+            <input type="password" id="motdepasse1" class="form-control mb-3" placeholder="Mot de passe">
+            <a href="#"  onClick="navigate('connection-page', 'inscrire-page')" class="link-primary">S'inscrire</a><button class="btn btn-primary connecter" onclick="seconnecter()">Se connecter</button>
+            <p class="erreur-raison" id="erreur-raison-1"></p>
+        </div>
+    </div>
+    <div class="root"  id="inscrire-page">
+        <div class="auth-container" class="form-group">
+        <h4 class="text-primary mb-5">S'inscrire</h4>
+            <input type="tel" id="telephone" class="form-control mb-3" placeholder="Telephone">
+            <input type="text" id="pseudo" class="form-control mb-3" placeholder="Pseudo">
+            <input type="password" id="motdepasse" class="form-control mb-3" placeholder="Mot de passe">
+            <input type="file" id="photo" class="form-control mb-3">
+            <a href="#" onClick="navigate('inscrire-page', 'connection-page')" class="link-primary">Se connecter</a><button class="btn btn-primary" onclick="sinscrire()">S'inscrire</button>
+            <p class="erreur-raison" id="erreur-raison-2"></p>
+        </div>
+    </div>
+    <div class="root"  id="profile-page">
+        <div class="wrapper">
+            <div class="profile">
+                <img src="img/avatar.png" id="profile-photo" class="thumbnail">
+                <div class="check"><i class="fas fa-check"></i></div>
+                <h3 class="name" id="profile-telephone"></h3>
+                <p class="title" id="profile-pseudo"></p>
+                <button type="button" class="btn">Follow&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                  </svg></button>
+                <div class="social-icons mt-3">
+                    <div class="icon">
+                        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                          </svg></a>
+                        <h4>0</h4>
+                        <p>Followers</p>
+                    </div>
+                    <div class="icon">
+                        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                          </svg></a>
+                        <h4>0</h4>
+                        <p>Following</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="root"  id="contact-page">
+        <div class="wrapper">
+        <div class="list-group" id="list-contact">
+            <a href="#" class="list-group-item list-group-item-action active" style="text-align: center;">
+            Contacts &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+              </svg>
+            </a>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="cordova.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+</html>
